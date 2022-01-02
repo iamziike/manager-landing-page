@@ -1,0 +1,69 @@
+.navbar {
+  @include set-position(relative, $z-index: 100);
+  @include flex(flex, $justify: space-between, $align: center);
+  font-variant: small-caps;
+
+  &__links {
+    @include flex(flex, $gap: 30px, $justify: space-between);
+    color: var(--secondary-color);
+  }
+
+  &__link {
+    transition: color 0.2s;
+    &:hover {
+      color: var(--main-color);
+    }
+  }
+}
+
+.mobile-nav-controls {
+  @include set-display(none);
+}
+
+@media screen and (max-width: 1200px) {
+  .navbar {
+    --vertical-padding: 30px;
+    @include flex($align: flex-start);
+    padding-top: var(--vertical-padding);
+    padding-bottom: var(--vertical-padding);
+
+    &__links {
+      @include set-position(
+        fixed,
+        $width: 100%,
+        $left: 120%,
+        $top: 0,
+        $height: 100%
+      );
+      @include flex($direction: column);
+      padding: 100px;
+      background-color: var(--navbar-bg);
+      color: var(--navbar-color);
+      font-size: var(--largest-font-size);
+      transition: left 0.5s ease-out;
+    }
+
+    &__link {
+      @include set-width(max-content);
+      margin: 0 auto;
+    }
+
+    button {
+      @include set-display(none);
+    }
+  }
+
+  .mobile-nav-controls {
+    @include flex(flex, $justify: flex-end);
+    @include set-position(
+      fixed,
+      $z-index: 100,
+      $top: 0,
+      $right: 0,
+      $width: max-content
+    );
+    padding-top: var(--vertical-padding);
+    padding-bottom: var(--vertical-padding);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,124 @@
+@mixin flex(
+  $type: flex,
+  $gap: null,
+  $direction: null,
+  $justify: null,
+  $align: null,
+  $width: null,
+  $height: null
+) {
+  @if ($type) {
+    display: $type;
+  }
+  @if ($gap) {
+    gap: $gap;
+  }
+  @if ($direction) {
+    flex-direction: $direction;
+  }
+  @if ($justify) {
+    @include justify($justify);
+  }
+  @if ($align) {
+    @include align($align);
+  }
+  @if ($width) {
+    @include set-width($width);
+  }
+  @if ($height) {
+    @include set-height($height);
+  }
+}
+
+@mixin set-display($type, $width: null, $height: null) {
+  display: $type;
+  @if ($width) {
+    @include set-width($width);
+  }
+  @if ($height) {
+    @include set-height($height);
+  }
+}
+
+@mixin set-position(
+  $type,
+  $left: null,
+  $right: null,
+  $top: null,
+  $bottom: null,
+  $width: null,
+  $height: null,
+  $z-index: null
+) {
+  position: $type;
+  @if ($left) {
+    @include left-move($left);
+  }
+  @if ($right) {
+    @include right-move($right);
+  }
+  @if ($top) {
+    @include top-move($top);
+  }
+  @if ($bottom) {
+    @include bottom-move($bottom);
+  }
+  @if ($width) {
+    @include set-width($width);
+  }
+  @if ($height) {
+    @include set-height($height);
+  }
+  @if ($z-index) {
+    z-index: $z-index;
+  }
+}
+
+@mixin set-width-height($width: null, $height: null) {
+  @if ($width) {
+    @include set-width($width);
+  }
+  @if ($height) {
+    @include set-height($height);
+  }
+}
+
+@mixin set-width($width) {
+  width: $width;
+}
+
+@mixin set-height($height) {
+  height: $height;
+}
+
+@mixin left-move($left) {
+  left: $left;
+}
+
+@mixin right-move($right) {
+  right: $right;
+}
+
+@mixin top-move($top) {
+  top: $top;
+}
+
+@mixin bottom-move($bottom) {
+  bottom: $bottom;
+}
+
+@mixin justify($justify) {
+  justify-content: $justify;
+}
+
+@mixin align($align) {
+  align-items: $align;
+}
+
+@mixin area-padding($left, $right) {
+  padding: $left $right;
+}
+
+@mixin center-element {
+  margin: 0 auto;
+}

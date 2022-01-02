@@ -1,0 +1,176 @@
+.footer {
+  @include set-position(relative);
+  margin-top: 100px;
+
+  &__bottom-bar {
+    @include set-display(grid);
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: var(--very-dark-blue);
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    & > *:first-child {
+      @include flex(
+        flex,
+        $gap: 10px,
+        $direction: column,
+        $justify: space-between
+      );
+    }
+
+    & > *:last-child {
+      @include flex(flex, $direction: column, $justify: space-between);
+    }
+
+    @media screen and (max-width: 1220px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding-bottom: 50px;
+
+      & > *:nth-child(1) {
+        order: 1;
+        @include flex($direction: row);
+        align-items: center;
+      }
+
+      & > *:nth-child(3) {
+        @include set-width(max-content);
+        order: 3;
+        margin: 0 auto;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      & > *:nth-child(1) {
+        order: 1;
+        @include flex($direction: column);
+        margin: 0 auto;
+
+        & > div {
+          @include set-width(100%);
+        }
+      }
+    }
+  }
+
+  &__links {
+    @include set-display(grid);
+    grid-template-columns: repeat(2, 1fr);
+    color: var(--very-light-gray);
+
+    @media screen and (max-width: 1220px) {
+      @include set-width(100%);
+      order: 2;
+      margin: 0 auto;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (max-width: 840px) {
+      @include set-width(100%);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px 100px;
+      margin: 0 auto;
+    }
+
+    @media screen and (max-width: 650px) {
+      @include set-width(100%);
+      grid-template-columns: repeat(1, 1fr);
+      gap: 10px 20px;
+      text-align: center;
+    }
+
+    a {
+      transition: color 0.3s;
+      &:hover {
+        color: var(--bright-red);
+      }
+    }
+  }
+}
+
+.billboard {
+  @include flex(
+    flex,
+    $gap: 20%,
+    $justify: space-between,
+    $align: center,
+    $direction: column
+  );
+  @include set-position(relative);
+  text-align: center;
+  background: url('../../assets/images/bg-simplify-section-desktop.svg')
+    var(--bright-red);
+  background-position: 0% 100%;
+  background-size: cover;
+  border: dashed 5px var(--main-bg-color);
+  border: dotted 10px var(--main-bg-color);
+  color: var(--very-light-gray);
+
+  div:nth-child(1) {
+    padding: 10px 0;
+    & > * {
+      @include set-width(25ch);
+      font-size: var(--largest-font-size);
+    }
+  }
+
+  @media (max-width: 800px) {
+    div:nth-child(1) {
+      padding: 10px 0;
+      & > * {
+        @include set-width(100%);
+        font-size: var(--largest-font-size);
+      }
+    }
+  }
+}
+
+.social-links {
+  @include flex(flex, $gap: 15px);
+
+  svg {
+    path {
+      transition: fill 0.5s;
+    }
+
+    &:hover path {
+      fill: var(--bright-red);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    svg {
+      margin-top: 10px;
+    }
+  }
+}
+
+.reach-us {
+  @include flex(flex, $gap: 10px, $align: flex-start);
+
+  input {
+    padding: 10px;
+    border-radius: 100px;
+    &::selection {
+      background-color: var(--bright-red);
+      color: var(--very-light-gray);
+    }
+  }
+
+  // @media screen and (max-width: 400px) {
+  //   gap: 5px;
+  //   @include flex($direction: column, $align: center);
+  // }
+}
+
+.copyright {
+  @include set-width(max-content);
+  margin-left: auto;
+  opacity: 0.7;
+
+  @media screen and (max-width: 1220px) {
+    @include set-position(absolute, $bottom: 0);
+    margin-bottom: 15px;
+    font-size: var(--small-font-size);
+  }
+}

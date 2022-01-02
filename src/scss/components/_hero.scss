@@ -1,0 +1,29 @@
+.hero {
+  @include set-position(relative, $height: 100%);
+  text-align: center;
+
+  &__text-content {
+    margin-bottom: 40px;
+
+    h1 {
+      @include set-width(18ch);
+      margin: 0 auto;
+      color: var(--secondary-color);
+      font-size: var(--largest-font-size);
+      font-weight: 700;
+    }
+
+    p {
+      @include set-width(60ch);
+      line-height: 130%;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 800px) {
+    h1,
+    p {
+      @include set-width(100%);
+    }
+  }
+}
